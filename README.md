@@ -2,8 +2,8 @@
 
 ###### Simulate a flag waving in the breeze right in your browser window.
 
-
-[LINK](http://krikienoid.github.io/flagwaver/)
+[Fork](http://arconyx.github.io/flagwaver/)
+[Original](http://krikienoid.github.io/flagwaver/)
 
 
 ## Info
