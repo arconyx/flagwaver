@@ -31,13 +31,15 @@
         $setTopEdge,
         $openImgFile,
         $infoImgFile,
-        $windToggle;
+        $windToggle,
+        $recordingToggle;
 
     // Settings
 
     var flagWaverDefaults = {
-            isWindOn : true,
-            flag     : {
+            isWindOn    : true,
+            isRecording : false,
+            flag        : {
                 imgUploadMode : 'web',
                 imgURL        : '',
                 imgFilePath   : '',
@@ -56,6 +58,15 @@
                 else {
                     flagWaver.setWind( 0.001 );
                 }
+            },
+            toggleRecording : function () {
+              flagWaverOpts.isRecording = !flagWaverOpts.isRecording;
+              if ( flagWaverOpts.isRecording ) {
+                flagWaver.startRecording();
+              }
+              else {
+                flagWaver.stopRecording();
+              }
             },
             flag : {
                 setImgUploadMode : function () {
@@ -246,6 +257,7 @@
         $openImgFile      = $( '#open-img-file' );
         $infoImgFile      = $( '#info-img-file' );
         $windToggle       = $( '#wind-toggle' );
+        $recordingToggle  = $( '#recording-toggle' );
 
         //
         // Init
@@ -301,6 +313,7 @@
         rivets.bind( $windToggle,  flagWaverModel );
         rivets.bind( $setHoisting, flagWaverModel );
         rivets.bind( $setTopEdge,  flagWaverModel );
+        rivets.bind( $recordingToggle,  flagWaverModel );
 
     } );
 

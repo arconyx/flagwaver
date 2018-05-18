@@ -148,6 +148,30 @@
                             <option value="right">Right</option>
                         </select>
                     </div>
+                    <div class="page-controls-group">
+                        <h2>Record</h2>
+                        <input
+                            type="button"
+                            class="input-control input-btn input-btn-md"
+                            data-text-selected="Recording"
+                            data-text-unselected="Not Recording"
+                            data-rv-value="flagWaverOpts.isRecording | onoff 'Recording' 'Not Recording'"
+                            data-rv-on-click="flagWaverControls.toggleRecording"
+                            id="recording-toggle"
+                        />
+                    </div>
+                    <div class="page-controls-group">
+                        <h2>Export</h2>
+                        <a
+                          class="input-control input-btn input-button-"
+                          id="downloadlink"
+                          href=""
+                          download="flag"
+                          style="text-decoration: none"
+                          >
+                          Download Video
+                        </a>
+                    </div>
                 </div>
             </aside>
 

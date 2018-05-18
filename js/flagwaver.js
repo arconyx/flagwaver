@@ -1100,6 +1100,12 @@
         scene.add( flag.object );
         publicFlag = flag.createPublic();
 
+        // Init recording variables
+        flagCanvas = window.flagWaver.canvas;
+        canvasStream = flagCanvas.captureStream(60);
+        recorder = new MediaRecorder(canvasStream);
+        recorder.addEventListener('dataavailable', finishRecording);
+
         // Begin animation
         animate();
 
@@ -1168,6 +1174,22 @@
         renderer.render( scene, camera );
     }
 
+    function startRecording() {
+      recorder.start();
+    }
+
+    function stopRecording() {
+      recorder.stop();
+    }
+
+    function finishRecording(e) {
+      var videoData = [ e.data ];
+      var blob = new Blob(videoData, { 'type': 'video/webm' });
+      var videoURL = URL.createObjectURL(blob);
+      var downloadLink = document.getElementById('downloadlink');
+      downloadLink.href = videoURL;
+    }
+
     //
     // Export
     //
@@ -1175,6 +1197,8 @@
     window.flagWaver = {
         init       : init,
         setWind    : setWind,
+        startRecording : startRecording,
+        stopRecording : stopRecording,
         animation  : {
             start  : function () {
                 if ( animationPaused ) {
